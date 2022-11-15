@@ -6,24 +6,22 @@ import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
 import { Col, Row } from 'react-bootstrap';
 import { getTranslate } from './apiCalls';
+import { API_BASE_URL } from './apiCalls';
+
 
 function App() {
 
-  const [selectedCity1, setSelectedCity1] = useState(null);
-  const cities = [
-    { name: 'English', code: 'EN' },
-    { name: 'Rome', code: 'RM' },
-    { name: 'London', code: 'LDN' },
-    { name: 'Istanbul', code: 'IST' },
-    { name: 'Paris', code: 'PRS' }
-  ];
-  const onCityChange = (e) => {
-    setSelectedCity1(e.value);
-  }
+  const [to, setTo] = useState('');
+  const [from, setFrom] = useState('');
+  const [data, setData] = useState([]);
+  const [translated, setTranslated] = useState("");
 
-  useEffect(() => {
-handleTranslate();
-  }, [])
+
+  const languages = [
+    { name: 'English', code: 'EN' },
+    { name: 'Turkish', code: 'TR' },
+    { name: 'Spanish', code: 'ES' }
+  ];
 
 
   const exampleData = {
@@ -42,6 +40,49 @@ handleTranslate();
     "to": "ES"
   };
 
+
+  const onFromChange = (e) => {
+    setFrom(e.value);
+
+  }
+  const onToChange = (e) => {
+    setTo(e.value);
+  }
+
+  const onBodyChange = (e) => {
+    const val = e.target.value;
+    setData([{original : val}]);
+  }
+
+  const fetchGetTranslate = () => {
+    const sendBody = {
+      data,
+      from: from.code,
+      to: to.code
+    }
+    console.log("last", sendBody)
+    fetch(API_BASE_URL, {
+      method: "POST",
+      body: JSON.stringify(sendBody),
+    })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(result);
+          setTranslated(result.data[0]?.translated);
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+  }
+
+  useEffect(() => {
+
+  }, [])
+
+
+
   const handleTranslate = async () => {
     try {
       const { data } = await getTranslate();
@@ -51,6 +92,13 @@ handleTranslate();
     }
   };
 
+  const onSubmitButton = () => {
+    console.log("from:", from);
+    console.log("to:", to);
+    console.log("body:", data);
+    fetchGetTranslate();
+  }
+
   return (
     <div className="surface-0 text-700 text-center">
 
@@ -58,16 +106,16 @@ handleTranslate();
       <h5>v1.0</h5>
       <Row>
         <Col mx="auto">
-          <Dropdown value={selectedCity1} options={cities} onChange={onCityChange} optionLabel="name" placeholder="From" />
-          <Dropdown value={selectedCity1} options={cities} onChange={onCityChange} optionLabel="name" placeholder="To" />
+          <Dropdown value={from} options={languages} onChange={onFromChange} optionLabel="name" placeholder="From" />
+          <Dropdown value={to} options={languages} onChange={onToChange} optionLabel="name" placeholder="To" />
 
         </Col>
       </Row>
 
-      <InputTextarea rows={5} cols={30} />
-      <InputTextarea rows={5} cols={30} />
+      <InputTextarea rows={5} cols={30} onChange={onBodyChange} />
+      <InputTextarea rows={5} cols={30} disabled value={translated} />
       <br></br>
-      <Button label="Translate" aria-label="Submit" className="p-button" />
+      <Button label="Translate" aria-label="Submit" className="p-button" onClick={onSubmitButton} />
     </div>
   );
 }

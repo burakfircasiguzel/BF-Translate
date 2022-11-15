@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://script.google.com/macros/s/AKfycby0R553CWyrJSK59AO3XqOUJBS_HuivV5d2Y8fNffiZjcKAZtbDIepsykM4BZgjHRNHuQ/exec";
+export const API_BASE_URL = "https://script.google.com/macros/s/AKfycbz8ftKh3cHAHFXYAX2ku6rYnNBXmFK7c2sNAWMgg37EYCOe9LIcXZHeRX1dHeimf48h/exec";
 
 export const getTranslate = (body) => {
     return axios.post(API_BASE_URL, body, {
