@@ -116,6 +116,7 @@ function App() {
       <InputTextarea rows={5} cols={30} disabled value={translated} />
       <br></br>
       <Button label="Translate" aria-label="Submit" className="p-button" onClick={onSubmitButton} />
+      <h6 className="text-101  mt-3">Burak FIRÇASIGÜZEL</h6>
     </div>
   );
 }
