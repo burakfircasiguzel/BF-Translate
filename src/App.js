@@ -112,7 +112,7 @@ function App() {
         </Col>
       </Row>
 
-      <InputTextarea rows={5} cols={30} onChange={onBodyChange} />
+      <InputTextarea rows={5} cols={30} onChange={onBodyChange}  placeholder="..."/>
       <InputTextarea rows={5} cols={30} disabled value={translated} />
       <br></br>
       <Button label="Translate" aria-label="Submit" className="p-button" onClick={onSubmitButton} />
