@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
-
 import { Dropdown } from 'primereact/dropdown';
 import { Col, Row } from 'react-bootstrap';
 import { getTranslate } from './apiCalls';
@@ -11,8 +9,8 @@ import { API_BASE_URL } from './apiCalls';
 
 function App() {
 
-  const [to, setTo] = useState('');
-  const [from, setFrom] = useState('');
+  const [to, setTo] = useState({ name: 'English', code: 'EN' });
+  const [from, setFrom] = useState({ name: 'Turkish', code: 'TR' });
   const [data, setData] = useState([]);
   const [translated, setTranslated] = useState("");
 
@@ -20,25 +18,9 @@ function App() {
   const languages = [
     { name: 'English', code: 'EN' },
     { name: 'Turkish', code: 'TR' },
-    { name: 'Spanish', code: 'ES' }
+    { name: 'Spanish', code: 'ES' },
+    { name: 'French', code: 'FR' }
   ];
-
-
-  const exampleData = {
-    "data": [
-      {
-        "original": "Hello, My name is Burak"
-      },
-      {
-        "original": "I'm a software developer"
-      },
-      {
-        "original": "Some words: Car, Forest, City, Desk"
-      }
-    ],
-    "from": "EN",
-    "to": "ES"
-  };
 
 
   const onFromChange = (e) => {
@@ -51,7 +33,7 @@ function App() {
 
   const onBodyChange = (e) => {
     const val = e.target.value;
-    setData([{original : val}]);
+    setData([{ original: val }]);
   }
 
   const fetchGetTranslate = () => {
@@ -99,10 +81,16 @@ function App() {
     fetchGetTranslate();
   }
 
+  const onGithubButton = (e) => {
+    window.open("https://github.com/burakfircasiguzel/");
+  }
+
   return (
     <div className="surface-0 text-700 text-center">
 
       <div className="text-900 font-bold text-5xl mb-3">BF Translate</div>
+      <div className="text-450 font-bold text-sm  mb-3">This application does not use any Translate NPM packages (Google Translate, Yandex etc.). <br /> It works directly with the API written on Google Apps Script.</div>
+      <div className="text-450 font-bold text-sm  mb-3">You can read this related blog on <a href="https://medium.com/@burakfguzel/how-to-create-your-own-google-translate-api-bb65771b980b" target="_blank">Medium</a><i className="pi pi-align-left px-2"></i></div>
       <h5>v1.0</h5>
       <Row>
         <Col mx="auto">
@@ -112,11 +100,18 @@ function App() {
         </Col>
       </Row>
 
-      <InputTextarea rows={5} cols={30} onChange={onBodyChange}  placeholder="..."/>
+      <InputTextarea rows={5} cols={30} onChange={onBodyChange} placeholder="..." />
       <InputTextarea rows={5} cols={30} disabled value={translated} />
       <br></br>
       <Button label="Translate" aria-label="Submit" className="p-button" onClick={onSubmitButton} />
-      <h6 className="text-101  mt-3">Burak FIRÇASIGÜZEL</h6>
+      <br />
+
+
+      <Button className="github p-0 p-button-secondary mt-3" aria-label="Discord" onClick={onGithubButton}>
+        <i className="pi pi-github px-2"></i>
+        <span className="px-3">github.com/burakfircasiguzel</span>
+      </Button>
+      <h6 className="text-101  mt-3"></h6>
     </div>
   );
 }
