@@ -106,7 +106,7 @@ function App() {
       <Button label="Translate" aria-label="Submit" className="p-button" onClick={onSubmitButton} />
       <br />
 
-
+  
       <Button className="github p-0 p-button-secondary mt-3" aria-label="Discord" onClick={onGithubButton}>
         <i className="pi pi-github px-2"></i>
         <span className="px-3">github.com/burakfircasiguzel</span>
