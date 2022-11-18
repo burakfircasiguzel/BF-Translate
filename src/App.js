@@ -96,10 +96,9 @@ function App() {
         <Col mx="auto">
           <Dropdown value={from} options={languages} onChange={onFromChange} optionLabel="name" placeholder="From" />
           <Dropdown value={to} options={languages} onChange={onToChange} optionLabel="name" placeholder="To" />
-
         </Col>
       </Row>
- 
+  
       <InputTextarea rows={5} cols={30} onChange={onBodyChange} placeholder="..." />
       <InputTextarea rows={5} cols={30} value={translated} />
       <br></br>
