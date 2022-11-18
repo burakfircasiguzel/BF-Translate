@@ -99,7 +99,7 @@ function App() {
 
         </Col>
       </Row>
-
+ 
       <InputTextarea rows={5} cols={30} onChange={onBodyChange} placeholder="..." />
       <InputTextarea rows={5} cols={30} value={translated} />
       <br></br>
