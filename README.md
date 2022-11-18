@@ -2,7 +2,7 @@
 
 <p align="center"><img src="https://github.com/burakfircasiguzel/BF-Translate/blob/master/header.png?raw=true" alt="project-image"></p>
 
-<p id="description">This application works directly with the API written on <b>Google Apps Script</b>. It does not use any Translate NPM packages (translate-google, etc). </p>
+<p id="description">This application works directly with the API written on <b>Google Apps Script</b>. It does not use any Translate NPM packages (translate-google, yandex-translate etc). </p>
 
 <p id="description">You can read this related blog on <a href="https://medium.com/@burakfguzel/how-to-create-your-own-google-translate-api-bb65771b980b" target="_blank"><i>Medium</i></a></p>
 <h2>🚀 Demo</h2>
